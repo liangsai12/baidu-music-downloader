@@ -2,7 +2,7 @@
 
 ## Demo
 
-[在线演示](http://liangsai12.github.io/baidu-music-downloader/)
+[在线演示](http://liangsai12.github.io/musicDown/)
 
 ## 介绍
 
