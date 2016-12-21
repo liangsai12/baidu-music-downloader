@@ -21,17 +21,15 @@
 			
     $(function(){  
        $("#getBtn").click(function(){
-	   /*    
+	       
             $.get("http://api.itwusun.com/music/search/dx/1",
 				{'format':'json',
 				 'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
-				 'keyword':'Ã÷Ìì»á¸üºÃ'},  
+				 'keyword':'明天会更好'},  
             	function(data){
-                	var jsonData = "";
-					jsonData += "SongId: " + data[1].SongId + "<br/>" +
-								"SongName: " + data[1].SongName;
-                	$("#dataArea").html(jsonData);
-                });  */
+alert("12");
+                	$("#dataArea").html(data);
+                });  
 				
 
     });
