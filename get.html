@@ -10,21 +10,22 @@
             url: "http://sug.music.baidu.com/info/suggestion",
             dataType: "jsonp",
             data: {
-                word: 'Ã÷Ìì»á¸üºÃ',
+                word: 'æ˜Žå¤©ä¼šæ›´å¥½',
                 version: 2,
                 from: 0
             },
 			success: function(data) { 
-		
-            }});	
-				alert("12");
+		alert("12");
+            }
+			});	
+			
     $(function(){  
        $("#getBtn").click(function(){
 	   /*    
             $.get("http://api.itwusun.com/music/search/dx/1",
 				{'format':'json',
 				 'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
-				 'keyword':'Ã÷Ìì»á¸üºÃ'},  
+				 'keyword':'ÃƒÃ·ÃŒÃ¬Â»Ã¡Â¸Ã¼ÂºÃƒ'},  
             	function(data){
                 	var jsonData = "";
 					jsonData += "SongId: " + data[1].SongId + "<br/>" +
