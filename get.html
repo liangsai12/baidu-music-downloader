@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+	<title>MyWebProject</title>
+	<meta charset="utf-8" />
+	
+<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script language="javascript" type="text/javascript"> 
+			$.ajax({
+            type: "get",
+            url: "http://sug.music.baidu.com/info/suggestion",
+            dataType: "jsonp",
+            data: {
+                word: '明天会更好',
+                version: 2,
+                from: 0
+            },
+			success: function(data) { 
+		
+            }});	
+				alert("12");
+    $(function(){  
+       $("#getBtn").click(function(){
+	   /*    
+            $.get("http://api.itwusun.com/music/search/dx/1",
+				{'format':'json',
+				 'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
+				 'keyword':'明天会更好'},  
+            	function(data){
+                	var jsonData = "";
+					jsonData += "SongId: " + data[1].SongId + "<br/>" +
+								"SongName: " + data[1].SongName;
+                	$("#dataArea").html(jsonData);
+                });  */
+				
+
+    });
+    </script>
+</head>
+<body>
+<input id="getBtn" type="button" value="Get JSON Data" />
+<br/>
+<label id="dataArea"></label>
+</body>
+</html>
