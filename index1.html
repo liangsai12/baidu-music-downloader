@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>无损音乐下载器</title>
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://cdn.bootcss.com/normalize/3.0.3/normalize.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<script language="javascript" type="text/javascript"> 
+				
+    $(function(){  
+       $("#getBtn").click(function(){
+	      var $searchInput = $("#search-input");
+		   var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
+		  
+          $.get("http://api.itwusun.com/music/search/"+leizhi+"/1",
+				{
+				'format':'json',
+				 'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
+				 'keyword':$searchInput.val()},  
+            	function(data){
+				
+                //var songData = data[0]||{};
+                var $musicDetail = $("#music-detail");
+                $musicDetail.empty();
+				var $musicList = $("#search-items");
+                $musicList.empty();
+                if (data.length) {
+                    for (var i = 0; i < data.length; i++) {
+						var musicItem = data[i]||{};
+
+						
+					if (musicItem.FlacUrl){
+						// 构造音乐详情 HTML 结构
+						var $itemDetail = $('<div class="media">' +
+							'<div class="media-left">' +
+							'<a href="#">' +
+							'<img class="media-object" src="' + musicItem.PicUrl + '" width="80" >' +
+							'</a>' +
+							'</div>' +
+							'<div class="media-body">' +
+							'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
+							'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
+							'<a class="btn btn-success" href="' + musicItem.FlacUrl + '"><i class="glyphicon glyphicon-cloud-download"></i> 下载</a></p>' +
+							'</div>' +
+							'</div>');
+
+						$musicDetail.append($itemDetail);
+						
+						}
+						else if(musicItem.CopyUrl){
+												// 构造音乐详情 HTML 结构
+						var $itemDetail = $('<div class="media">' +
+							'<div class="media-left">' +
+							'<a href="#">' +
+							'<img class="media-object" src="' + musicItem.PicUrl + '" width="80" >' +
+							'</a>' +
+							'</div>' +
+							'<div class="media-body">' +
+							'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
+							'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
+							'<a class="btn btn-success" href="' + musicItem.CopyUrl + '"><i class="glyphicon glyphicon-cloud-download"></i> 下载</a></p>' +
+							'</div>' +
+							'</div>');
+
+						$musicList.append($itemDetail);
+						
+						}
+
+                    }
+                } else {  // 没有搜索到结果
+                     $musicDetail = $('<li class="list-group-item">暂无结果</li>');
+
+                };
+                
+				
+                },'jsonp'); 
+		 });
+    });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h3>LS自用 <small><span class="label label-warning">alpha</span></small></h3>
+        </div>
+ 
+        <div class="row">
+            <!-- Search -->
+            <div class="col-md-12 search-form">	
+				<div class="input-group-inline">
+				
+				<div class="input-group-addon" id='leibiao'>
+					<h4><input type="radio" name="optionsRadios" id="o1" value="wy" checked>网易
+						<input type="radio" name="optionsRadios" id="o2" value="bd">百度
+						<input type="radio" name="optionsRadios" id="o3" value="qq">腾讯
+						<input type="radio" name="optionsRadios" id="o4" value="xm">虾米
+					</h4>
+				</div></div>
+				<div class="input-group-addon" id='leibiao'>
+					<h4><input type="radio" name="optionsRadios" id="o4" value="kg">酷狗
+						<input type="radio" name="optionsRadios" id="o4" value="kw">酷我
+						<input type="radio" name="optionsRadios" id="o4" value="tt">天天
+						<input type="radio" name="optionsRadios" id="o4" value="dx">爱音
+					</h4>
+				</div>
+				
+                <div class="input-group-inline">
+                    	<div class="input-group-addon" >
+						<input type="text" id="search-input" class="form-control" placeholder="关键字">
+						<input class="btn btn-success" id="getBtn" type="button" value="开始搜索" />
+					    </div>
+			   </div>
+			  	   
+            </div>
+            <!-- Search Result -->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">无损</h3>
+                    </div>
+                    <ul id="music-detail"  class="panel-body">
+                        <li class="list-group-item">暂无结果</li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--   class="list-group" -->
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">普通音质</h3>
+                    </div>
+                    <div id="search-items"  class="panel-body">
+                        <p>暂无信息</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+   
+    
+</body>
+</html>
