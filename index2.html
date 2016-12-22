@@ -81,7 +81,9 @@ $(document).ready(function(){
 	      var $searchInput = $("#search-input");
 		   var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
 		  
-          $.ajax({	type: "get",
+          $.ajax({	
+					async:false,
+					type: "get",
 					url: "http://api.itwusun.com/music/search/"+leizhi+"/1",
 					dataType: "jsonp",
 					data:{
