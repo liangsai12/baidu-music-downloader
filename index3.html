@@ -39,7 +39,7 @@
                 <div class="input-group-inline">
                     	<div class="input-group-addon" >
 						<input type="text" id="search-input" class="form-control" placeholder="关键字">
-						<button class="btn btn-success" style='cursor: pointer' id="getBtn"  >搜索</button>					    </div>
+						<button class="btn btn-success" id="getBtn"  >搜索</button>					    </div>
 			   </div>
 			  	   
             </div>
@@ -76,7 +76,7 @@
 
 				
 $(document).ready(function(){  
-       $("#getBtn").click(function(){
+       $("#getBtn").on("tap",function(){
 	      var $searchInput = $("#search-input");
 		   var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
 		  
