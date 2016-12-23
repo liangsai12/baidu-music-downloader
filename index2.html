@@ -85,6 +85,8 @@ $(document).ready(function(){
 					type: "get",
 					url: "http://api.itwusun.com/music/search/"+leizhi+"/1",
 					dataType: "jsonp",
+					crossDomain:true,
+		  			cache :false,
 		  			heard:{'content-type':"application/json"}
 					data:{
 					'format':'json',
