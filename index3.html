@@ -96,7 +96,12 @@ $(document).ready(function(){
 					data:{
 					'format':'json',
 					'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
-					'keyword':$searchInput.val()},  
+					'keyword':$searchInput.val()},
+		  			error:function(e) {
+
+					alert(e);
+
+					},
 					success:function(data){
 				
                 //var songData = data[0]||{};
