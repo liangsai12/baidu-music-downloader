@@ -76,7 +76,7 @@
 
 				
 $(document).ready(function(){  
-       $("#getBtn").click(function(){
+       $("#getBtn").on('click',function(){
 	      var $searchInput = $("#search-input");
 		   var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
 		  
@@ -87,7 +87,7 @@ $(document).ready(function(){
 					dataType: "jsonp",
 					crossDomain:true,
 		  			cache :false,
-		  			
+					timeout:10000,					
 					data:{
 					'format':'json',
 					'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
