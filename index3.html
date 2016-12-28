@@ -97,9 +97,9 @@ $(document).ready(function(){
 					'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
 					'keyword':$searchInput.val()},
 		                         error: function(XMLHttpRequest, textStatus, errorThrown) {   
-			                     alert(XMLHttpRequest.status +" "+XMLHttpRequest.readyState+" "+textStatus);                      
-				                      
-			                    },		
+			                     if	(XMLHttpRequest.readyState!=4) alert(XMLHttpRequest.status +" "+XMLHttpRequest.readyState+" "+textStatus);                      
+				                else      alert	("无语，竟然啥也没找到！")       ;  
+					 },		
   			
 					
 
