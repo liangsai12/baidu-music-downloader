@@ -18,7 +18,7 @@
 	</script>	
 </head>
 <body>
-			<div class="switch" data-on-label="有图" data-off-label="无图">
+		<div class=" switch switch-large" data-on-label="有图" data-off-label="无图">
    		 <input id='tupian' type="checkbox" checked />
 		</div>
     <div class="container">
@@ -111,7 +111,7 @@
 				
 $(document).ready(function(){  
        $("#getBtn").on("click",function(){
-	       var tupian=$("#tupian").value;
+	       
 	       var $searchInput = $("#search-input");
 		   var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
 		  
@@ -146,7 +146,7 @@ $(document).ready(function(){
 						for (var i = 0; i < data.length; i++) {
 							var musicItem = data[i]||{};
 							var mediatu=' ';
-							if(tupian){
+							if($("#tupian").is(':checked')){
 								mediatu='<div class="media-left">' +
 								'<a href="#">' +
 								'<img class="media-object" src="' + musicItem.PicUrl + '" width="80" >' +
