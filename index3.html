@@ -4,9 +4,10 @@
     <title>无损音乐下载器</title>
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <link href="http://cdn.bootcss.com/normalize/3.0.3/normalize.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    	<link href="http://cdn.bootcss.com/normalize/3.0.3/normalize.min.css" rel="stylesheet">
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://www.bootcss.com/p/bootstrap-switch/static/stylesheets/bootstrapSwitch.css">
 	<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
@@ -19,7 +20,9 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h3>LS自用 <small><span class="label label-warning"><a href="./src/0.1.jpg" >请吃块糖</a></span></small></h3>
+		<div id='tupian' class="switch switch-small"><input type="checkbox" checked />
+		</div>
+             <small><span class="label label-warning"><a href="./src/0.1.jpg" >请吃块糖</a></span></small>
         </div>
  
         <div class="row">
@@ -106,7 +109,7 @@
 				
 $(document).ready(function(){  
        $("#getBtn").on("click",function(){
-	       
+	       var tupian=$("#tupian").value;
 	       var $searchInput = $("#search-input");
 		   var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
 		  
@@ -140,12 +143,21 @@ $(document).ready(function(){
 					if (data.length) {
 						for (var i = 0; i < data.length; i++) {
 							var musicItem = data[i]||{};
-
+							var mediatu=' ';
+							if(tupian){
+								mediatu='<div class="media-left">' +
+								'<a href="#">' +
+								'<img class="media-object" src="' + musicItem.PicUrl + '" width="80" >' +
+								'</a>' +
+								'</div>';
+							}
 							
 						if (musicItem.FlacUrl){
 							// 构造音乐详情 HTML 结构
+
+							
 							var $itemDetail = $('<div class="media">' +
-		
+								tupian+
 								'<div class="media-body">' +
 								'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
 								'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
@@ -159,7 +171,7 @@ $(document).ready(function(){
 							else if(musicItem.CopyUrl){
 													// 构造音乐详情 HTML 结构
 							var $itemDetail = $('<div class="media">' +
-		
+								tupian+
 								'<div class="media-body">' +
 								'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
 								'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
