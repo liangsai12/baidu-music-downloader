@@ -1,0 +1,230 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>无损音乐下载器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">	
+	<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	
+</head>
+<body>
+
+    <div class="container">
+        <div class="page-header">		
+             <small><span class="label label-warning"><a href="./wo.html" >请吃块糖</a></span></small>
+   		 <button id='tupian' class="btn btn-primary "  >点击加载图片</button>
+		<div class="btn-group">
+			<button type="button" id='ly' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="ly" name="来源">来源
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<button  id="wy"  class="btn  btn-default btn-block" value="wy" name="网易"> 网易</button>
+				<button  id="bd"  class="btn  btn-default btn-block" value="bd" name="百度" >百度</button>
+				<button  id="qq"  class="btn  btn-default btn-block"  value="tx" name="腾讯">腾讯</button>
+				<button  id="xm"  class="btn  btn-default btn-block"  value="xm" name="虾米">虾米</button>
+				<button  id="wy"  class="btn  btn-default btn-block"  value="kg" name="酷狗">酷狗</button>
+				<button  id="kw"  class="btn  btn-default btn-block"  value="wy" name="酷我">酷我</button>
+				<button  id="tt"  class="btn  btn-default btn-block" value="tt" name="天天" >天天</button>
+				<button  id="dx"  class="btn  btn-default btn-block"  value="dx" name="爱音">爱音</button>
+			</ul>
+		</div>
+		</div>
+        
+ 
+        <div class="row">
+            <!-- Search -->
+            <div class="col-xs-12 col-md-12 ">	
+				<!--div class="input-group-inline ">
+				<div class="input-group-addon ">				
+				<h4><input type="radio" name="optionsRadios" id="o1" value="wy" checked>网易
+					<input type="radio" name="optionsRadios" id="o2" value="bd">百度
+					<input type="radio" name="optionsRadios" id="o3" value="qq">腾讯
+					<input type="radio" name="optionsRadios" id="o4" value="xm">虾米
+				</h4>
+					 
+				</div>
+				</div>
+				<div class="input-group-inline ">
+				<div class="input-group-addon " >
+				<h4><input type="radio" name="optionsRadios" id="o4" value="kg">酷狗
+					<input type="radio" name="optionsRadios" id="o4" value="kw">酷我
+					<input type="radio" name="optionsRadios" id="o4" value="tt">天天
+					<input type="radio" name="optionsRadios" id="o4" value="dx">爱音
+				</h4>
+				</div>
+				</div-->
+                <div class="input-group">
+				<input type="text" id="search-input" class="form-control" placeholder="关键字">
+                 <div class="input-group-btn">
+					<button  id="getBtn"  class="btn btn-primary"  >搜索</button>
+ </div>
+				</div>
+			  	   
+            </div>
+            <!-- Search Result -->
+            <div class="col-xs-12 col-md-6 " id='r1' style=' visibility: hidden'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">无损</h3>
+                    </div>
+                    <ul id="music-detail"  class="panel-body">
+                        
+                    </ul>
+                </div>
+
+            </div>
+            <!--   class="list-group" -->
+            <div class="col-xs-12 col-md-6" id='r2' style='visibility: hidden'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">普通音质</h3>
+                    </div>
+                    <div id="search-items"  class="panel-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+ 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">
+					关闭				
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					出错啦					
+				</h4>
+			</div>
+			<div class="modal-body">
+				无语，竟然啥也没找到！
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" 
+						data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+    
+	
+</body>
+
+
+<script language="javascript" type="text/javascript"> 
+
+		var tu=false;		
+$(document).ready(function(){  
+		$("#tupian").on("click",function(){
+			if (tu==false)
+			{tu=true;$("#tupian").html('点击启用无图');}
+			else {tu=false;$("#tupian").html('点击加载图片');}
+		});
+		
+		$(".dropdown-menu button").on("click",function(){
+			$("#ly").html($(this).attr("name")+'<span class="caret"></span>');	
+			$("#ly").val($(this).val());
+			$("#ly").attr("name",$(this).attr("name"));
+		});
+		
+       $("#getBtn").on("click",function(){
+	   var leizhi=$("#ly").val();
+	   if(leizhi=='ly')
+	   {
+	   $(".modal-body").html('^_^! 请点击『来源』再搜索哦');	
+	   $('#myModal').modal('show');
+	   return;
+	   }
+	   		var $musicDetail = $("#music-detail");
+			var $musicList = $("#search-items");
+			$musicDetail.empty();	
+			$musicList.empty();
+			 $musicDetail.append($('<p>正在加载...</p>'));
+			  $musicList.append($('<p>正在加载...</p>'));
+	       $("#r1").css('visibility','visible');
+		   $("#r2").css('visibility','visible');
+		   
+	       var $searchInput = $("#search-input");
+		   //var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
+		  
+          $.ajax({	
+					async:false,
+					type: "get",
+					url: "http://api.itwusun.com/music/search/"+leizhi+"/1",
+					dataType: "jsonp",
+		 			timeout:10000,	
+  					crossDomain:true,
+		  			cache :false,
+		         		beforeSend: function (xhr) {  
+           				xhr.setRequestHeader("Test", "testheadervalue");  
+      							 },
+					data:{
+						'format':'json',
+						'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
+						'keyword':$searchInput.val()},
+		            error: function(e) {
+						$(".modal-body").html('^_^! 无语，啥也没有');
+						$('#myModal').modal('show');
+						},		
+					success:function(data){
+					$musicDetail.empty();	
+					$musicList.empty();
+					if (data.length) {
+						for (var i = 0; i < data.length; i++) {
+							var musicItem = data[i]||{};
+							var mediatu=' ';
+							if(tu==true){
+								mediatu='<div class="media-left">' +
+								'<a href="#">' +
+								'<img class="media-object" src="' + musicItem.PicUrl + '" width="80" >' +
+								'</a>' +
+								'</div>';
+							}
+							
+						if (musicItem.FlacUrl){
+							// 构造音乐详情 HTML 结构		
+							var $itemDetail = $('<div class="media">' +
+								mediatu+
+								'<div class="media-body">' +
+								'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
+								'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
+								'<a class="btn btn-success" href="' + musicItem.FlacUrl + '"><i class="glyphicon glyphicon-cloud-download"></i> 下载</a></p>' +
+								'</div>' +
+								'</div>');
+
+							$musicDetail.append($itemDetail);
+							
+							}
+							else if(musicItem.CopyUrl){
+													// 构造音乐详情 HTML 结构
+							var $itemDetail = $('<div class="media">' +
+								mediatu+
+								'<div class="media-body">' +
+								'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
+								'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
+								'<a class="btn btn-success" href="' + musicItem.CopyUrl + '"><i class="glyphicon glyphicon-cloud-download"></i> 下载</a></p>' +
+								'</div>' +
+								'</div>');
+
+							$musicList.append($itemDetail);
+							
+							}
+
+						}
+					} else {  // 没有搜索到结果
+						 $musicDetail = $('<li class="list-group-item">暂无结果</li>');
+
+					};
+                
+				
+                } 
+		 });
+    });
+});    
+</script>
+</html>
