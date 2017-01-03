@@ -52,10 +52,12 @@
 						<button  id="dx"  class="btn  btn-default btn-block"  value="dx" name="爱音">爱音</button>
 					</ul>
 					</div>
+					
 				</div>
-				<input type="text" id="search-input" class="form-control" placeholder="关键字">
+				<input type="text" id="search-input" class="form-control" placeholder="键盘上的搜索键、回车键搜索">
                  <div class="input-group-btn">
-					<button  id="getBtn"  class="btn btn-primary"  >搜索</button>
+				 <button id='tupian' class="btn btn-primary "  >无图</button>
+					<!--button  id="getBtn"  class="btn btn-primary"  >搜索</button-->
  </div>
 				</div>
 			  	   
@@ -114,7 +116,7 @@
             <div class="page-header">	
 <small><span class="label label-warning"><a href="./index.html" >免责声明-_-||</a></span></small>  			
              <small><span class="label label-warning"><a href="./wo.html" >请</a></span></small>
-   		 <button id='tupian' class="btn btn-primary btn-sm"  >无图</button>
+   		 
 
 		</div>	
 </body>
@@ -136,12 +138,14 @@ $(document).ready(function(){
 			$("#ly").attr("name",$(this).attr("name"));
 		});
 		$(document).keydown(function(event){  
-			if(event.keyCode==13){  
-				$("#getBtn").click();  
+			if(event.keyCode!=13)
+				{  
+			//$("#getBtn").click(); 
+				return;			
 			}  
-		}); 
+		//}); 
 		
-       $("#getBtn").on("click",function(){
+       //$("#getBtn").on("click",function(){
 	   var leizhi=$("#ly").val();
 	   if(leizhi=='ly')
 	   {
