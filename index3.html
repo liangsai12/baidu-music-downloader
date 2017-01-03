@@ -11,26 +11,8 @@
 <body>
 
     <div class="container">
-        <div class="page-header">		
-             <small><span class="label label-warning"><a href="./wo.html" >请</a></span></small>
-   		 <button id='tupian' class="btn btn-primary "  >点击加载图片</button>
-		<div class="btn-group">
-			<button type="button" id='ly' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="ly" name="来源">来源
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" role="menu">
-				<button  id="wy"  class="btn  btn-default btn-block" value="wy" name="网易"> 网易</button>
-				<button  id="bd"  class="btn  btn-default btn-block" value="bd" name="百度" >百度</button>
-				<button  id="qq"  class="btn  btn-default btn-block"  value="tx" name="腾讯">腾讯</button>
-				<button  id="xm"  class="btn  btn-default btn-block"  value="xm" name="虾米">虾米</button>
-				<button  id="wy"  class="btn  btn-default btn-block"  value="kg" name="酷狗">酷狗</button>
-				<button  id="kw"  class="btn  btn-default btn-block"  value="wy" name="酷我">酷我</button>
-				<button  id="tt"  class="btn  btn-default btn-block" value="tt" name="天天" >天天</button>
-				<button  id="dx"  class="btn  btn-default btn-block"  value="dx" name="爱音">爱音</button>
-			</ul>
-		</div>
-		</div>
-        
+
+        <br>
  
         <div class="row">
             <!-- Search -->
@@ -55,6 +37,22 @@
 				</div>
 				</div-->
                 <div class="input-group">
+				<div class="input-group-btn">
+					<div class="btn-group">
+					<button type="button" id='ly' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="wy" name="网易">网易
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<button  id="bd"  class="btn  btn-default btn-block" value="bd" name="百度" >百度</button>
+						<button  id="qq"  class="btn  btn-default btn-block"  value="tx" name="腾讯">腾讯</button>
+						<button  id="xm"  class="btn  btn-default btn-block"  value="xm" name="虾米">虾米</button>
+						<button  id="wy"  class="btn  btn-default btn-block"  value="kg" name="酷狗">酷狗</button>
+						<button  id="kw"  class="btn  btn-default btn-block"  value="wy" name="酷我">酷我</button>
+						<button  id="tt"  class="btn  btn-default btn-block" value="tt" name="天天" >天天</button>
+						<button  id="dx"  class="btn  btn-default btn-block"  value="dx" name="爱音">爱音</button>
+					</ul>
+					</div>
+				</div>
 				<input type="text" id="search-input" class="form-control" placeholder="关键字">
                  <div class="input-group-btn">
 					<button  id="getBtn"  class="btn btn-primary"  >搜索</button>
@@ -112,8 +110,13 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-	<small><span class="label label-warning"><a href="./index.html" >免责声明-_-||</a></span></small>  
-    	
+	
+            <div class="page-header">	
+<small><span class="label label-warning"><a href="./index.html" >免责声明-_-||</a></span></small>  			
+             <small><span class="label label-warning"><a href="./wo.html" >请</a></span></small>
+   		 <button id='tupian' class="btn btn-primary btn-sm"  >无图</button>
+
+		</div>	
 </body>
 
 
@@ -123,8 +126,8 @@
 $(document).ready(function(){  
 		$("#tupian").on("click",function(){
 			if (tu==false)
-			{tu=true;$("#tupian").html('点击启用无图');}
-			else {tu=false;$("#tupian").html('点击加载图片');}
+			{tu=true;$("#tupian").html('载图');}
+			else {tu=false;$("#tupian").html('无图');}
 		});
 		
 		$(".dropdown-menu button").on("click",function(){
@@ -132,6 +135,11 @@ $(document).ready(function(){
 			$("#ly").val($(this).val());
 			$("#ly").attr("name",$(this).attr("name"));
 		});
+		$(document).keydown(function(event){  
+			if(event.keyCode==13){  
+				$("#getBtn").click();  
+			}  
+		}); 
 		
        $("#getBtn").on("click",function(){
 	   var leizhi=$("#ly").val();
