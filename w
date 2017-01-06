@@ -14,4 +14,13 @@
     
 </body>
 </html>
-<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div><script>  var cloudTieConfig = {    url: document.location.href,     sourceId: "",    productKey: "2e7c301ed70a4898bcb8618b10fc62e2",    target: "cloud-tie-wrapper"  };</script><script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script> 
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "",
+    productKey: "2e7c301ed70a4898bcb8618b10fc62e2",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
