@@ -1,0 +1,237 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>无损音乐下载器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">	
+	<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+
+<script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>	
+<script>var _hmt = _hmt || [];(function() {? var hm = document.createElement("script");? hm.src = "https://hm.baidu.com/hm.js?ee83d237aca04683936334c543067927";? var s = document.getElementsByTagName("script")[0];?? s.parentNode.insertBefore(hm, s);})();</script>	
+</head>
+<body>
+	<audio id="audio" controls="controls" class="container navbar-fixed-bottom" style='width:98%;'>
+			 
+			<source  src=""/>
+	</audio>
+    <div class="container" >
+	        <br>
+
+
+ 
+        <div class="row">
+            <!-- Search -->
+            <div class="col-xs-12 col-md-12 ">	
+
+                <div class="input-group">
+				<div class="input-group-btn">
+					<div class="btn-group">
+					<button type="button" id='ly' class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="wy" name="网易">网易
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<button  id="bd"  class="btn  btn-default btn-block" value="bd" name="百度" >百度</button>
+						<button  id="qq"  class="btn  btn-default btn-block"  value="tx" name="腾讯">腾讯</button>
+						<button  id="xm"  class="btn  btn-default btn-block"  value="xm" name="虾米">虾米</button>
+						<button  id="wy"  class="btn  btn-default btn-block"  value="kg" name="酷狗">酷狗</button>
+						<button  id="kw"  class="btn  btn-default btn-block"  value="wy" name="酷我">酷我</button>
+						<button  id="tt"  class="btn  btn-default btn-block" value="tt" name="天天" >天天</button>
+						<button  id="dx"  class="btn  btn-default btn-block"  value="dx" name="爱音">爱音</button>
+					</ul>
+					</div>
+					
+				</div>
+				<input type="text" id="search-input" class="form-control" placeholder="键盘上的搜索键、回车键搜索">
+                 <div class="input-group-btn">
+				 <button id='tupian' class="btn btn-primary "  >无图</button>
+					<!--button  id="getBtn"  class="btn btn-primary"  >搜索</button-->
+ </div>
+				</div>
+			  	   
+            </div>
+            <!-- Search Result -->
+            <div class="col-xs-12 col-md-6 " id='r1' style=' visibility: hidden'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">无损</h3>
+                    </div>
+                    <ul id="music-detail"  class="panel-body">
+                        
+                    </ul>
+                </div>
+
+            </div>
+            <!--   class="list-group" -->
+            <div class="col-xs-12 col-md-6" id='r2' style='visibility: hidden'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">普通音质</h3>
+                    </div>
+                    <div id="search-items"  class="panel-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+ 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">
+					关闭				
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					出错啦					
+				</h4>
+			</div>
+			<div class="modal-body">
+				无语，竟然啥也没找到！
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" 
+						data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    <div class="page-header">	
+		<small>
+			<span class="label label-warning"><a href="./index.html" >免责声明-_-||</a></span>
+			<span class="label label-warning"><a href="./wo.html" >请</a></span>
+			<span class="label label-warning"><a href="./w.html" >好歌我知道</a></span>
+		</small>
+   		 
+	</div>	
+		
+</body>
+
+
+<script language="javascript" type="text/javascript"> 
+
+		var tu=false;		
+$(document).ready(function(){  
+		$("#tupian").on("click",function(){
+			if (tu==false)
+			{tu=true;$("#tupian").html('载图');}
+			else {tu=false;$("#tupian").html('无图');}
+		});
+		
+		$(".dropdown-menu button").on("click",function(){
+			$("#ly").html($(this).attr("name")+'<span class="caret"></span>');	
+			$("#ly").val($(this).val());
+			$("#ly").attr("name",$(this).attr("name"));
+		});
+		$(document).keydown(function(event){  
+			if(event.keyCode!=13)
+				{  
+			//$("#getBtn").click(); 
+				return;			
+			}  
+		//}); 
+		
+       //$("#getBtn").on("click",function(){
+	   var leizhi=$("#ly").val();
+	   if(leizhi=='ly')
+	   {
+	   $(".modal-body").html('^_^! 请点击『来源』再搜索哦');	
+	   $('#myModal').modal('show');
+	   return;
+	   }
+	   		var $musicDetail = $("#music-detail");
+			var $musicList = $("#search-items");
+			$musicDetail.empty();	
+			$musicList.empty();
+			 $musicDetail.append($('<p>正在加载...</p>'));
+			  $musicList.append($('<p>正在加载...</p>'));
+	       $("#r1").css('visibility','visible');
+		   $("#r2").css('visibility','visible');
+		   
+	       var $searchInput = $("#search-input");
+		   //var leizhi = $('input:radio[name="optionsRadios"]:checked').val();
+		  
+          $.ajax({	
+					async:false,
+					type: "get",
+					url: "http://api.itwusun.com/music/search/"+leizhi+"/1",
+					dataType: "jsonp",
+		 			timeout:10000,	
+  					crossDomain:true,
+		  			cache :false,
+		         		beforeSend: function (xhr) {  
+           				xhr.setRequestHeader("Test", "testheadervalue");  
+      							 },
+					data:{
+						'format':'json',
+						'sign':'a5cc0a8797539d3a1a4f7aeca5b695b9',
+						'keyword':$searchInput.val()},
+		            error: function(e) {
+						$(".modal-body").html('^_^! 无语，啥也没有');
+						$('#myModal').modal('show');
+						},		
+					success:function(data){
+					$musicDetail.empty();	
+					$musicList.empty();
+					if (data.length) {
+						for (var i = 0; i < data.length; i++) {
+							var musicItem = data[i]||{};
+							var mediatu=' ';
+							if(tu==true){
+								mediatu='<div class="media-left">' +
+								'<a href="#">' +
+								'<img class="media-object" src="' + musicItem.PicUrl + '" width="80" >' +
+								'</a>' +
+								'</div>';
+							}
+							
+						if (musicItem.FlacUrl){
+							// 构造音乐详情 HTML 结构		
+							var $itemDetail = $('<div class="media">' +
+								mediatu+
+								'<div class="media-body">' +
+								'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
+								'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
+								'<a class="btn btn-success" href="' + musicItem.FlacUrl + '"><i class="glyphicon glyphicon-cloud-download"></i> 下载</a></p>' +
+								'</div>' +
+								'</div>');
+
+							$musicDetail.append($itemDetail);
+							
+							}
+							else if(musicItem.CopyUrl){
+													// 构造音乐详情 HTML 结构
+							var $itemDetail = $('<div class="media">' +
+								mediatu+
+								'<div class="media-body">' +
+								'<h4 class="media-heading">' + musicItem.SongName + ' - ' + musicItem.Artist + '</h4>' +
+								'<p>文件格式： ' + musicItem.BitRate  +'</div>' +'<div class="media-right">' +
+								'<a class="btn btn-success" href="' + musicItem.CopyUrl + '"><i class="glyphicon glyphicon-cloud-download"></i> 下载</a>'+
+								'</p>' +
+								'<a class="btn btn-success" onclick=\"$(\'#audio\')[0].src=\'' + musicItem.CopyUrl + '\';$(\'#audio\')[0].play();\"><i class="glyphicon glyphicon-play"></i> 播放</a>'+
+								
+								'</div>' +
+								'</div>');
+
+							$musicList.append($itemDetail);
+							
+							}
+
+						}
+					} else {  // 没有搜索到结果
+						 $musicDetail = $('<li class="list-group-item">暂无结果</li>');
+
+					};
+                
+				
+                } 
+		 });
+    });
+});    
+</script>
+</html>
